@@ -22,7 +22,7 @@ public class Main {
 			System.out.println(" 4 Boys Clothing Department\n");
 			System.out.println(" 5 Girls Clothing Department\n");
 		 
-			department = Integer.parseInt(in.nextLine());
+			department = Integer.parseInt(sc.nextLine());
 			
 			switch(department) {
 			case 1:
