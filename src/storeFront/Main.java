@@ -31,7 +31,34 @@ public class Main {
 				System.out.println(" Here are some featured items");
 				//display items 
 				
-				
+				public static void main(String[] args) {
+					
+					Scanner keyboard = new Scanner (System.in);
+					String answer;
+					do {
+						
+					
+					System.out.println("Enter the price");
+					Double price = keyboard.nextDouble();
+					
+					System.out.println("Enter the quatity : ");
+					int qty = keyboard.nextInt();
+					
+					double total = price* qty;
+					
+					System.out.printf("The Total is $%.2f\n", total);
+					
+					System.out.println("Do you want to calculate another total? Yes or No");
+					
+					answer  = keyboard.next();
+							
+				}
+
+					
+					while (answer.equalsIgnoreCase("yes"));
+					
+			}
+			}
 				
 			}
 		
