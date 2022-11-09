@@ -2,6 +2,7 @@ package storeFront;
 
 public class Client {
 		//must be private to getter and setter can control the out put of the data
+	//testing for Jai.. toniD
 		
 		private String Numphone;
 		private String name;
