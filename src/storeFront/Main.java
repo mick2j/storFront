@@ -31,7 +31,7 @@ public class Main {
 		System.out.println("*****************************************************************************");
 		System.out.println("*********************WELCOME TO THE SHOPPING CENTER***************************");
 		System.out.println("*****************************************************************************");
-
+		System.out.println(" Our store features a variety of items from different departments\n");
 	
         while(isExitPressed == false){
 
@@ -64,8 +64,8 @@ public class Main {
                     isExitPressed = true;
                     System.out.println("See You next Time");
                     break;
-                default: System.out.println("Error, You Must Type a Valid Option")
-				
+                default: System.out.println("Error, You Must Type a Valid Option");
+
 			}
         }
 	}
@@ -129,6 +129,88 @@ public class Main {
         }
     }
     
+    
+    static void ShowRegisterClientMenu(){
+    	client = new Client();
+        String nameClient, numPhone;
+        String genderClient, typeClient;
+        int ageClient;
+        boolean isNameVerified, isNumberVerified, isAgeVerified, isGenderVerified, isTypeVerified;
+
+        System.out.println("Enter Customer: ");
+
+        do{
+            System.out.println("Enter Customer's Phone Number: ");
+            numPhone = in.nextLine();
+            client.setNumphone(numPhone);
+
+            if(numPhone.length() == 10){
+                isNumberVerified = true;
+            }
+            else
+            {
+                System.out.println("The Number Must have 10 digits");
+                isNumberVerified = false;
+            }
+        }while (isNumberVerified == false);
+
+
+        do{
+            System.out.println("Enter Customer's Name: ");
+            nameClient = in.nextLine();
+            client.setName(nameClient);
+
+            if(nameClient.length() > 2 && nameClient.length() < 25){
+                isNameVerified = true;
+            }
+            else
+            {
+                System.out.println("Name length must be between 2 and 25 character");
+                isNameVerified = false;
+            }
+        }while (isNameVerified == false);
+
+        do{
+            System.out.println("Enter Customer's Age: ");
+            ageClient = in.nextInt();
+            client.setAge(ageClient);
+
+            if(ageClient > 0 && ageClient < 99){
+                isAgeVerified = true;
+            }else{
+                System.out.println("Age Must Have Two Positives Digits");
+                isAgeVerified = false;
+            }
+        }while (isAgeVerified == false);
+
+        do{
+        	System.out.println("Enter Customer's Gender: ");
+            genderClient = in.nextLine().toUpperCase();
+            client.setGender(genderClient);
+
+            if(Objects.equals(genderClient, "F") || Objects.equals(genderClient, "M") || Objects.equals(genderClient, "X")){
+                isGenderVerified = true;
+            }else
+            {
+                System.out.println("You Must Type F if is Female, M if is Male, X if is different to F and M");
+                isGenderVerified = false;
+            }
+        }while (!isGenderVerified);
+        do{
+        	System.out.println("Enter Customer's Type: ");
+            typeClient = in.nextLine().toUpperCase();
+            client.setTypeClient(typeClient);
+
+            if(Objects.equals(typeClient, "F") || Objects.equals(typeClient, "V") || Objects.equals(typeClient, "N")){
+                isTypeVerified = true;
+            }else{
+                System.out.println("You Must Type F, V or N");
+                isTypeVerified = false;
+            }
+
+        }while (isTypeVerified == false);
+        System.out.println("Custumer has been successfully created!!!\n");
+    }
     
     
 }
