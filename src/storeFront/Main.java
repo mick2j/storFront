@@ -31,7 +31,7 @@ public class Main {
 		System.out.println("*****************************************************************************");
 		System.out.println("*********************WELCOME TO THE SHOPPING CENTER***************************");
 		System.out.println("*****************************************************************************");
-		System.out.println(" Our store features a variety of items from different departments\n");
+
 	
         while(isExitPressed == false){
 
@@ -64,8 +64,8 @@ public class Main {
                     isExitPressed = true;
                     System.out.println("See You next Time");
                     break;
-                default: System.out.println("Error, You Must Type a Valid Option");
-
+                default: System.out.println("Error, You Must Type a Valid Option")
+				
 			}
         }
 	}
