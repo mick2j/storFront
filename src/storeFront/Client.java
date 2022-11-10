@@ -3,31 +3,31 @@ package storeFront;
 public class Client {
 		//must be private to getter and setter can control the out put of the data
 		
-		private String Numphone;
+		private String numphone;
 		private String name;
 		private int age;
-		private char gender;
-		private char typeClient;
+		private String gender;
+		private String typeClient;
 		
 		public Client() {
 		}
 
-		public Client(String numphone, String name, int age, char gender, char typeClient) {
+		public Client(String numphone, String name, int age, String gender, String typeClient) {
 			super();
-			this.setNumphone (numphone);
-			this.setName (name);
-			this.setAge (age);
-			this.setGender (gender);
-			this.setTypeClient (typeClient);
+			this.numphone = numphone;
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+			this.typeClient = typeClient;
 		}
 
 		
 		public String getNumphone() {
-			return Numphone;
+			return numphone;
 		}
 
 		public void setNumphone(String numphone) {
-			Numphone = numphone;
+			numphone = numphone;
 		}
 
 		public String getName() {
@@ -46,25 +46,25 @@ public class Client {
 			this.age = age;
 		}
 
-		public char getGender() {
+		public String getGender() {
 			return gender;
 		}
 
-		public void setGender(char gender) {
+		public void setGender(String gender) {
 			this.gender = gender;
 		}
 
-		public char getTypeClient() {
+		public String getTypeClient() {
 			return typeClient;
 		}
 
-		public void setTypeClient(char typeClient) {
+		public void setTypeClient(String typeClient) {
 			this.typeClient = typeClient;
 		}
 
 		@Override
 		public String toString() {
-			return "Client [Numphone=" + Numphone + ", name=" + name + ", age=" + age + ", gender=" + gender
+			return "Client [Numphone=" + numphone + ", name=" + name + ", age=" + age + ", gender=" + gender
 					+ ", typeClient=" + typeClient + "]";
 		}
 

@@ -5,12 +5,12 @@ public class GereralClothing {
 		private String code;
 		private String description;
 		private String size;
-		private double price;
+		private float price;
 		
 		public GereralClothing() {
 		}
 
-		public GereralClothing(String code, String description, String size, double price) {
+		public GereralClothing(String code, String description, String size, float price) {
 			super();
 			this.code = code;
 			this.description = description;
@@ -42,11 +42,11 @@ public class GereralClothing {
 			this.size = size;
 		}
 
-		public double getPrice() {
+		public float getPrice() {
 			return price;
 		}
 
-		public void setPrice(double price) {
+		public void setPrice(float price) {
 			this.price = price;
 		}
 
