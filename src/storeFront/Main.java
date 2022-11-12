@@ -1,11 +1,9 @@
 package storeFront;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
-
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class Main {
+	static LocalDateTime date = LocalDateTime.now();
 	static Scanner in = new Scanner(System.in);
 	static String optionSubMenu;
 	static int optionRegisterClient = 0;
@@ -48,17 +46,17 @@ public class Main {
                     ShowStorageSubMenu();
                     break;
                 case "2":
-                  //  ShowRegisterClientMenu();
+                	ShowRegisterClientMenu();
                     break;
                 case "3":
-                	//ShowEnterSale();
+                	ShowEnterSale();
                     break;
                 case "4":
-                	/*if(Objects.equals(client, null)){
-                        continue;
-                    }
-
-                    ShowSaleInformation(client, shoppingCar);*/
+    				if (Objects.equals(client, null))
+    					continue;
+    				ShowSaleInformation(client, shoppingCar);
+    				client = null;
+    				shoppingCar.clear();
                     break;
                 case "5":
                     isExitPressed = true;
@@ -104,7 +102,7 @@ public class Main {
                 System.out.println("Product Found");
                 System.out.println("The Code is: " + stock[i].getCode());
                 System.out.println("The Size is: " + stock[i].getSize());
-                System.out.println("The Price is: " + (float)stock[i].getPrice());
+                System.out.println("The Price is: $" + (float)stock[i].getPrice());
                 productoEncontrado = true;
             }
         }
@@ -120,7 +118,7 @@ public class Main {
                 System.out.println("Product Found");
                 System.out.println("The description is: " + stock[i].getDescription());
                 System.out.println("The Size is: " + stock[i].getSize());
-                System.out.println("The Price is: " + (float)stock[i].getPrice());
+                System.out.println("The Price is: $" + (float)stock[i].getPrice());
                 productoEncontrado = true;
             }
         }
@@ -128,8 +126,7 @@ public class Main {
             System.out.println("Product Not Found, Please Check The Code Again");
         }
     }
-    
-    
+     
     static void ShowRegisterClientMenu(){
     	client = new Client();
         String nameClient, numPhone;
@@ -212,6 +209,102 @@ public class Main {
         System.out.println("Custumer has been successfully created!!!\n");
     }
     
-    
+	static void ShowEnterSale() {
+
+		String optionEnterSale;
+
+		do {
+			System.out.println("Please, Select an option: \n");
+			System.out.println("1) Type Code");
+			System.out.println("2) Exit");
+			optionEnterSale = in.next();
+
+			if (Objects.equals(optionEnterSale, "1")) {
+
+				do {
+					System.out.println("Type Products' Code");
+					String code = in.next().toUpperCase();
+
+					addClothingToCar(code);
+
+				} while (isCodeValid == false);
+
+			} else {
+				System.out.println("Type a Valid Code");
+			}
+
+		} while (!Objects.equals(optionEnterSale, "2"));
+
+	}
+	
+	
+	
+	static void ShowSaleInformation(Client client, List<GereralClothing> clothings) {
+		final int TAX = 19;
+
+		System.out.printf("#######################################################%n");
+		System.out.printf("# %-10s # SALE    # N° %06d #%n", date.toString(), invoice_Number);
+		System.out.printf("#######################################################%n");
+
+		System.out.printf("# %-20s %-19s %-8s #%n", "Client", "Phone Number", "TypeClient");
+		System.out.printf("# %-20s %-19s %-9s  #%n", client.getName(), client.getNumphone(), client.getTypeClient());
+		System.out.printf("#######################################################%n");
+
+		System.out.printf("# %-7s %-23s %-6s %-12s #%n", "Code", "Discount", "Size", "Price");
+
+		for (int i = 0; i < clothings.size(); i++) {
+			System.out.printf("# %-7s %-23s %-6s %-12.2f #%n", clothings.get(i).getCode(),
+					clothings.get(i).getDescription(), clothings.get(i).getSize(), clothings.get(i).getPrice());
+		}
+		System.out.printf("#######################################################%n");
+
+		float subTotal = 0;
+		for (int i = 0; i < clothings.size(); i++) {
+			subTotal += clothings.get(i).getPrice();
+		}
+
+		double amount = subTotal;
+
+		int discountPercentage = 0;
+
+		if (Objects.equals(client.getTypeClient(), "F")) { // if the client is frequently gets 8% discount
+			discountPercentage = 8;
+			amount = (int) (amount * 0.92);
+		} else if (Objects.equals(client.getTypeClient(), "V")) { // if the client is vip gets 12% discount
+			discountPercentage = 12;
+			amount = (int) (amount * 0.88);
+		}
+		if (client.getAge() >= 65) { // if the client is 65 years or old gets 4% discount
+			discountPercentage += 4;
+			amount = (int) (amount * 0.96);
+		}
+
+		amount = (amount * 1.19f);
+
+		System.out.printf("# Subtotal :                             %5.2f        #%n", subTotal);
+		System.out.printf("# TAX      :                             %-8d     #%n", TAX);
+		System.out.printf("# Discount :                             %-8d     #%n", discountPercentage);
+		System.out.printf("#######################################################%n");
+		System.out.printf("# Total    :                           $ %-8.2f     #%n", amount);
+		System.out.printf("#######################################################%n");
+
+		invoice_Number++;
+
+	}
+
+	static void addClothingToCar(String code) {
+		isCodeValid = false;
+		for (int i = 0; i < stock.length; i++) {
+			if (Objects.equals(code, stock[i].getCode())) {
+				isCodeValid = true;
+				shoppingCar.add(stock[i]);
+				return;
+			}
+		}
+		if (isCodeValid == false) {
+			System.out.println("Product Not Found, Please Check The Code Again");
+		}
+	}
 }
+
 
