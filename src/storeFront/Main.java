@@ -137,18 +137,16 @@ public class Main {
         System.out.println("Enter Customer: ");
 
         do{
-            System.out.println("Enter Customer's Phone Number: ");
-            numPhone = in.nextLine();
-            client.setNumphone(numPhone);
+			System.out.println("Enter Customer's Phone Number: ");
+			numPhone = in.nextLine();
+			client.setNumphone(numPhone);
 
-            if(numPhone.length() == 10){
-                isNumberVerified = true;
-            }
-            else
-            {
-                System.out.println("The Number Must have 10 digits");
-                isNumberVerified = false;
-            }
+			if (numPhone.length() == 10) {
+				isNumberVerified = true;
+			} else {
+				System.out.println("The Number Must have 10 digits");
+				isNumberVerified = false;
+			}
         }while (isNumberVerified == false);
 
 
